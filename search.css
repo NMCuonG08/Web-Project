@@ -1,0 +1,44 @@
+body {
+    font-family: cnn_sans_display, helveticaneue, Helvetica, Arial, Utkal, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.search-block {
+    background-color: white;
+    display: flex;
+    width: 1500px;
+    height: auto;
+    border-radius:10px;
+    padding: 20px;
+}
+.form-control {
+    display: inline-block;
+    padding: 1rem 1rem;
+    width: 1300px;
+}
+.table-content {
+    background-color: white;
+    width: 1500px;
+    height: auto;
+    border-radius:10px;
+    padding: 20px;
+}
+table {
+    width: 1351px;
+    height: auto;
+    border-radius:10px;
+    padding: 20px;
+}
+.nav {
+    width: 1351px;
+}
+.nav-link {
+    color: black;
+}
+.nav-link {
+    width: 193px;
+}
+td {
+    width: 193px;
+}
