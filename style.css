@@ -115,3 +115,31 @@ body {
   margin-left: 10px;
 }
 
+@media screen and (max-width: 1024px) {
+  .footer-links a {
+    display: none; 
+  }
+
+ 
+  .footer-links span {
+    display: inline-block;
+  }
+
+  .footer-bottom {
+    text-align: center; 
+    margin-top: 15px;
+    width: 90%;
+    max-width: 1200px;
+  }
+
+  .policy-links {
+    justify-content: center; 
+    gap: 20px;
+    font-size: 0.9em;
+  }
+
+  .social-icons {
+    justify-content: center; 
+  }
+}
+
