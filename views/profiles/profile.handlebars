@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #e0e0e0, #f0e3e7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .account-container {
+            background-color: #f7f7f7;
+            width: 600px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .profile-picture-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-picture-container img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
+
+        .camera-icon {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: red;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .basic-info {
+            margin-top: 20px;
+        }
+
+        .basic-info h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .info-item:first-child {
+            border-top: none;
+        }
+
+        .info-label {
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .edit-btn {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px 15px;
+            border-radius: 5px;
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .edit-btn:hover {
+            border-color: #666;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .modal .save-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal .close-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="account-container">
+        <div class="header">
+            <div class="profile-picture-container" onclick="document.getElementById('file-input').click();">
+                <img id="profile-picture" src="profile.png" alt="Profile Picture">
+                <div class="camera-icon">📷</div>
+            </div>
+            <input type="file" id="file-input" style="display: none;" onchange="uploadImage(event)">
+            <h1>Your account</h1>
+        </div>
+        <div class="basic-info">
+            <h2>Basic Info</h2>
+            <p>Manage your personal information</p>
+            <div class="info-item">
+                <span class="info-label">Display name</span>
+                <span class="info-value" id="display-name">aa</span>
+                <button class="edit-btn" onclick="openModal('Display name', 'display-name')">Edit</button>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Email address</span>
+                <span class="info-value" id="email-address">iiiiii</span>
+                <button class="edit-btn" onclick="openModal('Email address', 'email-address')">Edit</button>
+            </div>
+            <div class="info-item">
+                <span class="info-label">First name</span>
+                <span class="info-value" id="first-name">iiiih</span>
+                <button class="edit-btn" onclick="openModal('First name', 'first-name')">Edit</button>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Last name</span>
+                <span class="info-value" id="last-name">iiiii</span>
+                <button class="edit-btn" onclick="openModal('Last name', 'last-name')">Edit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2 id="modal-title"></h2>
+            <input type="text" id="modal-input">
+            <button class="save-btn" onclick="saveChanges()">Save</button>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let currentField = '';
+
+        function uploadImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-picture').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function openModal(title, fieldId) {
+            document.getElementById('modal-title').innerText = `Edit ${title}`;
+            document.getElementById('modal-input').value = document.getElementById(fieldId).innerText;
+            currentField = fieldId;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function saveChanges() {
+            const newValue = document.getElementById('modal-input').value;
+            if (newValue.trim() !== '') {
+                document.getElementById(currentField).innerText = newValue;
+            }
+            closeModal();
+        }
+    </script>
+</body>
+</html>

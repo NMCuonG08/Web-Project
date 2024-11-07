@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import express from 'express';
 import passport from 'passport';
 import session from 'express-session'
@@ -9,8 +10,21 @@ import facebookPassport from './authentication/facebook.js';
 import googlePassport from './authentication/google.js';
 import router from './routes/index.js';
 import githubPassport from './authentication/github.js';
+=======
+import express from "express";
+import { engine } from 'express-handlebars';
+import userinfo from './services/userinfo.js';
+
+>>>>>>> Stashed changes
 const app = express()
 
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
+
+app.engine('hbs',engine({
+    extname: 'hbs'
+}))
 
 app.engine('hbs', engine({
     extname : 'hbs',
@@ -40,9 +54,25 @@ app.engine('hbs', engine({
   
 
 app.get("/", (req, res) => {
-    res.send("Hello word")
+    res.send("Hello world")
 })
 
 app.listen(3000, ()  => {
     console.log("App is running")
+})
+
+app.get('/home',function(req,res){
+    res.render('home')
+})
+
+
+app.get('/profile', async function (req,res){
+    const id = +req.query.id || 1;
+    const entity = await userinfo.findByID(id);
+    if (!entity) {
+        return res.redirect('/')
+    }
+    res.render('profiles/profile',{
+        entity: entity
+    });
 })
