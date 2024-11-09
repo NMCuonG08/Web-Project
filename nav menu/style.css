@@ -1,11 +1,19 @@
+.navbar {
+    background-color: crimson !important;
+    border-bottom: 2px solid black;
+}
 /* Các cài đặt chung cho dropdown và thanh điều hướng */
 .navbar .dropdown-menu div[class*="col"] {
     margin-bottom: 1rem;
 }
 
+.navbar-brand {
+    color: black !important;
+}
+
 .navbar .dropdown-menu {
     border: none;
-    background-color: #0060c8 !important;
+    background-color: crimson !important;
 }
 
 /* Mặc định hiển thị tất cả các mục */
@@ -86,10 +94,27 @@
 
 /* Custom styles for navigation links */
 .navbar-nav .nav-link {
-    color: #fff !important;
+    color: black !important;
     cursor: pointer;
 }
 
 .navbar-nav .nav-link:hover {
     text-decoration: underline;
+}
+
+/* Đảm bảo input và button trong form-inline giữ cùng một hàng */
+.navbar .form-inline {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.navbar .form-inline input {
+    flex: 1; /* Đảm bảo input chiếm hết không gian còn lại */
+    min-width: 0; /* Đảm bảo input không chiếm nhiều hơn không gian cho phép */
+}
+
+.navbar .form-inline button {
+    white-space: nowrap; /* Giữ button không bị thu hẹp */
+    margin-left: 5px; /* Khoảng cách nhỏ giữa input và button */
 }
