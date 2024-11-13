@@ -180,22 +180,22 @@
             <p>Manage your personal information</p>
             <div class="info-item">
                 <span class="info-label">Display name</span>
-                <span class="info-value" id="display-name"><%= entity.FullName %></span>
+                <span class="info-value" id="display-name"><{{ entity.FullName }}></span>
                 <button class="edit-btn" onclick="openModal('Display name', 'display-name')">Edit</button>
             </div>
             <div class="info-item">
                 <span class="info-label">Email address</span>
-                <span class="info-value" id="email-address"><%= entity.Email %></span>
+                <span class="info-value" id="email-address"><{{ entity.Email }}></span>
                 <button class="edit-btn" onclick="openModal('Email address', 'email-address')">Edit</button>
             </div>
             <div class="info-item">
                 <span class="info-label">First name</span>
-                <span class="info-value" id="first-name"><%= entity.Firstname %></span>
+                <span class="info-value" id="first-name"><{{ entity.Firstname }}></span>
                 <button class="edit-btn" onclick="openModal('First name', 'first-name')">Edit</button>
             </div>
             <div class="info-item">
                 <span class="info-label">Last name</span>
-                <span class="info-value" id="last-name"><%= entity.LastName %></span>
+                <span class="info-value" id="last-name"><{{ entity.LastName }}></span>
                 <button class="edit-btn" onclick="openModal('Last name', 'last-name')">Edit</button>
             </div>
         </div>

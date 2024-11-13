@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 import express from 'express';
 import passport from 'passport';
 import session from 'express-session'
@@ -10,12 +10,12 @@ import facebookPassport from './authentication/facebook.js';
 import googlePassport from './authentication/google.js';
 import router from './routes/index.js';
 import githubPassport from './authentication/github.js';
-=======
-import express from "express";
-import { engine } from 'express-handlebars';
+
+
+
 import userinfo from './services/userinfo.js';
 
->>>>>>> Stashed changes
+
 const app = express()
 
 app.engine('handlebars', engine());
@@ -26,12 +26,10 @@ app.engine('hbs',engine({
     extname: 'hbs'
 }))
 
-app.engine('hbs', engine({
-    extname : 'hbs',
+
     
-  }));
-  app.set('view engine', 'hbs');
-  app.set('views', './view');
+
+  
   
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
