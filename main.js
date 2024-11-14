@@ -33,7 +33,7 @@ app.engine('hbs',engine({
   
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname)));
   app.use(session({
       secret: 'Q2VNTVN3QklsQXZTRmFhRHV6ZEtKcHhDdFNldG4xTHdGSzRCWkunSmJ5UT8',
       resave: false,
@@ -74,3 +74,7 @@ app.get('/profile', async function (req,res){
         entity: entity
     });
 })
+
+import profileRouter from "./routes/profile.route.js"
+
+app.use("/profile", profileRouter)

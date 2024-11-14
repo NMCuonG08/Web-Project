@@ -9,5 +9,12 @@ export default{
     findByID(id){
         return db('userinfo').where('UserID', id).first()
     },
+    del(id){
+        return db("userinfo").where("UserID", id).del();
+    },
+
+    patch(id,category){
+        return db("userinfo").where("UserID", id).update(category);
+    }
 }
 
