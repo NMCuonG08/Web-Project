@@ -6,25 +6,32 @@
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Email</th>
 	  <th scope="col">&nbsp</th>
 	  <th scope="col">&nbsp</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-	  <td>
-		<button class="btn btn-success"><i class='bx bxs-edit'></i></button>
-	  </td>
-	  <td>
-		<button class="btn btn-danger"><i class='bx bxs-trash-alt'></i></button>
-	  </td>
-    </tr>
-   
+    {{#if this.list.length}}
+      {{#each this.list}}
+      <tr>
+        <th scope="row">{{UserID}}</th>
+        <td>{{Firstname}}</td>
+        <td>{{LastName}}</td>
+        <td>{{Email}}</td>
+        <td>
+          <button class="btn btn-success" aria-label="Edit"><i class='bx bxs-edit'></i></button>
+        </td>
+        <td>
+          <button class="btn btn-danger" aria-label="Delete"><i class='bx bxs-trash-alt'></i></button>
+        </td>
+      </tr>
+      {{/each}}
+    {{else}}
+      <tr>
+        <td colspan="6" class="text-center">No data available</td>
+      </tr>
+    {{/if}}
   </tbody>
 </table>
 

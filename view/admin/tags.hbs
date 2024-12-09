@@ -1,30 +1,35 @@
-<h1>Tags Management</h1>
+<h1>Users Management</h1>
 <button class="btn btn-primary">Add</button>
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">name</th>
+      <th scope="col">slug</th>
 	  <th scope="col">&nbsp</th>
 	  <th scope="col">&nbsp</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td >1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-	  <td>
-		<button class="btn btn-success"><i class='bx bxs-edit'></i></button>
-	  </td>
-	  <td>
-		<button class="btn btn-danger"><i class='bx bxs-trash-alt'></i></button>
-	  </td>
-    </tr>
-   
+    {{#if this.list.length}}
+      {{#each this.list}}
+      <tr>
+        <th scope="row">{{id}}</th>
+        <td>{{name}}</td>
+        <td>{{slug}}</td>
+        <td>
+          <button class="btn btn-success" aria-label="Edit"><i class='bx bxs-edit'></i></button>
+        </td>
+        <td>
+          <button class="btn btn-danger" aria-label="Delete"><i class='bx bxs-trash-alt'></i></button>
+        </td>
+      </tr>
+      {{/each}}
+    {{else}}
+      <tr>
+        <td colspan="6" class="text-center">No data available</td>
+      </tr>
+    {{/if}}
   </tbody>
 </table>
 
