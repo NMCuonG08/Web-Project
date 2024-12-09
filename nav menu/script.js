@@ -25,9 +25,20 @@ $(document).ready(function() {
             $(".navbar .dropdown-toggle").off("mouseenter mouseleave");
         }
     }
-
-    // Trigger resize on load to apply hover functionality immediately if the viewport is wide enough
-    $(window).on('resize', handleResize);
-    handleResize();
+    
 });
 
+$(document).ready(function() {
+    // Sự kiện click vào biểu tượng kính lúp
+    $('#search-icon').click(function() {
+        // Toggle subnav visibility (hiện/ẩn subnav)
+        $('#subnav').toggle();
+    });
+  
+    // Đảm bảo khi click ra ngoài thì ẩn subnav
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-icon').length && !$(event.target).closest('#subnav').length) {
+            $('#subnav').hide();
+        }
+    });
+});
