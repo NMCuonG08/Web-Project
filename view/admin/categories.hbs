@@ -1,14 +1,16 @@
 <h1>Categories Management</h1>
-<button class="btn btn-primary" href="admin/categories/update">Add</button>
+<!-- Add Category Button -->
+<a class="btn btn-primary" href="/admin/categories/add">Add</a>
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">name</th>
-      <th scope="col">description</th>
-      <th scope="col">slug</th>
-      <th scope="col">&nbsp;</th>
-      <th scope="col">&nbsp;</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Slug</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -19,11 +21,19 @@
         <td>{{name}}</td>
         <td>{{description}}</td>
         <td>{{slug}}</td>
+        <!-- Edit Category Button -->
         <td>
-          <button class="btn btn-success" aria-label="Edit"><i class='bx bxs-edit'></i></button>
+          <a class="btn btn-success" href="/admin/categories/edit/{{id}}" aria-label="Edit">
+            <i class='bx bxs-edit'></i>
+          </a>
         </td>
+        <!-- Delete Category Button -->
         <td>
-          <button class="btn btn-danger" aria-label="Delete"><i class='bx bxs-trash-alt'></i></button>
+          <form action="/admin/categories/delete/{{id}}" method="post" style="display: inline;">
+            <button class="btn btn-danger" type="submit" aria-label="Delete">
+              <i class='bx bxs-trash-alt'></i>
+            </button>
+          </form>
         </td>
       </tr>
       {{/each}}

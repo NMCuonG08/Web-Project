@@ -1,0 +1,41 @@
+<h1>Edit Category</h1>
+<form method="post" action="/admin/categories/edit/{{category.id}}">
+  <div class="card">
+    <div class="card-header">Edit Category</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">Category Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="form-control"
+          value="{{category.name}}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          class="form-control"
+        >{{category.description}}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="slug">Slug</label>
+        <input
+          type="text"
+          name="slug"
+          id="slug"
+          class="form-control"
+          value="{{category.slug}}"
+        />
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <a href="/admin/categories" class="btn btn-outline-secondary">Cancel</a>
+    </div>
+  </div>
+</form>

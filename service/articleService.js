@@ -12,5 +12,15 @@ export default {
 
     getArticleByID(id) {
         return db('articles').where('id', id).first();
+    },
+    async getArticle() {
+        return db('articles');
+    },
+    async del(id){
+        return db("articles").where("id", id).del();
+    },
+ 
+    patch(id,category){
+        return db("articles").where("id", id).update(category);
     }
 }

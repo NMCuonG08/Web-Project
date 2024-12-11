@@ -37,7 +37,7 @@ router.get('/categories/add', (req, res) => {
 
 router.post('/categories/delete/:id', async (req, res) => {
     const { id } = req.params;
-
+    console.log(id)
     try {
         const ret = await categoryService.del(id);
         if (ret) {
@@ -67,7 +67,26 @@ router.post('/categories/edit/:id', async (req, res) => {
         res.status(500).send('An unexpected error occurred.');
     }
 });
+router.get('/categories/edit/:id', async (req, res) => {
+    const { id } = req.params;
 
+    try {
+        // Fetch the category by ID
+        const category = await categoryService.findById(id);
+
+        if (category) {
+            res.render('admin/editcat.hbs', {
+                layout: "nav-bar-admin",
+                category, // Pass category data to the template
+            });
+        } else {
+            res.status(404).send('Category not found.');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An unexpected error occurred while retrieving the category.');
+    }
+});
 // Tags
 router.get('/tags', async (req, res) => {
     const list = await adminService.getTags();

@@ -1,15 +1,15 @@
-import knexObj from "knex"
+import knex from "knex"
 
-const db = knexObj({
+const db = knex ({
     client: 'mysql2',
-    connection:{
+    connection: {
         host: 'localhost',
-        port: '3306',
+        port: 3306,
         user: 'root',
-        password: 'cuong1182004',
-        database: 'project'
+        password: '',
+        database: 'web',
     },
-    pool : {min: 0, max: 7}
-})
+    pool: { min: 0, max: 7}
+});
 
-export default db;
+export default db
