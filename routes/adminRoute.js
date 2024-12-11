@@ -96,27 +96,28 @@ router.get('/tags', async (req, res) => {
     });
 });
 
+router.get('/tags/add', async (req, res) => {
+    res.render('admin/addtag', {
+        layout: "nav-bar-admin"
+    });
+});
+
 router.post('/tags/add', async (req, res) => {
     const { name, slug } = req.body;
-
+  
     try {
-        const ret = await db('tag').insert({
-            name,
-            slug,
-            created_at: new Date(),
-            updated_at: new Date(),
-            status: 1
-        });
-        if (ret) {
-            res.redirect('/admin/tags');
-        } else {
-            res.status(500).send('Error when adding tag.');
-        }
+      const tagId = await adminService.addTag({ name, slug });
+  
+      if (tagId) {
+        res.redirect('/admin/tags');
+      } else {
+        res.redirect('/admin/tags/add');
+      }
     } catch (error) {
-        console.error(error);
-        res.status(500).send('An unexpected error occurred.');
+      console.error(error);
+      res.redirect('/admin/tags/add');
     }
-});
+  });
 
 router.post('/tags/delete/:id', async (req, res) => {
     const { id } = req.params;
@@ -148,6 +149,26 @@ router.post('/tags/edit/:id', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('An unexpected error occurred.');
+    }
+});
+
+router.get('/tags/edit/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const tag = await adminService.findTagById(id);
+
+        if (tag) {
+            res.render('admin/edittag.hbs', {
+                layout: "nav-bar-admin",
+                tag, // Pass category data to the template
+            });
+        } else {
+            res.status(404).send('tags not found.');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An unexpected error occurred while retrieving the tags.');
     }
 });
 

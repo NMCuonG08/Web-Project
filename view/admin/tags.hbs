@@ -1,13 +1,18 @@
-<h1>Users Management</h1>
-<button class="btn btn-primary">Add</button>
+<h1>Tags Management</h1>
+<button 
+  class="btn btn-primary"
+  onclick="window.location.href='/admin/tags/add'"
+>
+  Add
+</button>
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">name</th>
-      <th scope="col">slug</th>
-	  <th scope="col">&nbsp</th>
-	  <th scope="col">&nbsp</th>
+      <th scope="col">Name</th>
+      <th scope="col">Slug</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -18,10 +23,17 @@
         <td>{{name}}</td>
         <td>{{slug}}</td>
         <td>
-          <button class="btn btn-success" aria-label="Edit"><i class='bx bxs-edit'></i></button>
+          <a class="btn btn-success" href="/admin/tags/edit/{{id}}" aria-label="Edit">
+            <i class='bx bxs-edit'></i>
+          </a>
         </td>
+        <!-- Delete Category Button -->
         <td>
-          <button class="btn btn-danger" aria-label="Delete"><i class='bx bxs-trash-alt'></i></button>
+          <form action="/admin/tags/delete/{{id}}" method="post" style="display: inline;">
+            <button class="btn btn-danger" type="submit" aria-label="Delete">
+              <i class='bx bxs-trash-alt'></i>
+            </button>
+          </form>
         </td>
       </tr>
       {{/each}}
@@ -32,4 +44,3 @@
     {{/if}}
   </tbody>
 </table>
-
