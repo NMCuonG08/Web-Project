@@ -16,8 +16,17 @@ export default {
                 return db("tags").select("id").orderBy("id", "desc").limit(1);
             })
         },
-    async getUserByID(id) {
-        return db('userinfo').where('UserID', id).first();
+    async addUser(user) {
+              return db('userinfo').insert(user). then(() => {return db("userinfo").select("UserID").orderBy("UserID", "desc").limit(1);});
+            },
+    async getUserById(userId) {
+        try {
+            const user = await db('userinfo').where('UserID', userId).first(); // Adjust table name if necessary
+            return user; // Returns a single user object
+        } catch (error) {
+            console.error('Database error:', error);
+            throw error;
+        }
     },
     async getAllUsers() {
         return db('userinfo')
@@ -39,5 +48,5 @@ export default {
     }, 
     async patchUser(id,category){
         return db("userinfo").where("UserID", id).update(category);
-    },
+    }
 }

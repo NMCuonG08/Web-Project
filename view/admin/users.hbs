@@ -1,5 +1,5 @@
 <h1>Users Management</h1>
-<button class="btn btn-primary">Add</button>
+<a class="btn btn-primary" href="/admin/users/add">Add</a>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -7,23 +7,29 @@
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">Email</th>
-	  <th scope="col">&nbsp</th>
-	  <th scope="col">&nbsp</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
-    {{#if this.list.length}}
-      {{#each this.list}}
+    {{#if list}}
+      {{#each list}}
       <tr>
-        <th scope="row">{{UserID}}</th>
-        <td>{{Firstname}}</td>
-        <td>{{LastName}}</td>
-        <td>{{Email}}</td>
+        <th scope="row">{{this.UserID}}</th>
+        <td>{{this.Firstname}}</td>
+        <td>{{this.LastName}}</td>
+        <td>{{this.Email}}</td>
         <td>
-          <button class="btn btn-success" aria-label="Edit"><i class='bx bxs-edit'></i></button>
+          <a class="btn btn-success" href="/admin/users/edit/{{this.UserID}}" aria-label="Edit">
+            <i class='bx bxs-edit'></i>
+          </a>
         </td>
         <td>
-          <button class="btn btn-danger" aria-label="Delete"><i class='bx bxs-trash-alt'></i></button>
+          <form action="/admin/users/delete/{{this.UserID}}" method="post" style="display: inline;">
+            <button class="btn btn-danger" type="submit" aria-label="Delete">
+              <i class='bx bxs-trash-alt'></i>
+            </button>
+          </form>
         </td>
       </tr>
       {{/each}}
@@ -34,4 +40,3 @@
     {{/if}}
   </tbody>
 </table>
-

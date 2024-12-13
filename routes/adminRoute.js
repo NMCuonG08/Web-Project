@@ -71,13 +71,12 @@ router.get('/categories/edit/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        // Fetch the category by ID
         const category = await categoryService.findById(id);
 
         if (category) {
             res.render('admin/editcat.hbs', {
                 layout: "nav-bar-admin",
-                category, // Pass category data to the template
+                category, 
             });
         } else {
             res.status(404).send('Category not found.');
@@ -161,7 +160,7 @@ router.get('/tags/edit/:id', async (req, res) => {
         if (tag) {
             res.render('admin/edittag.hbs', {
                 layout: "nav-bar-admin",
-                tag, // Pass category data to the template
+                tag,
             });
         } else {
             res.status(404).send('tags not found.');
@@ -180,27 +179,45 @@ router.get('/users', async (req, res) => {
         layout: "nav-bar-admin"
     });
 });
+router.get('/users/add', (req, res) => {
+    res.render('admin/adduser.hbs', {
+        layout: "nav-bar-admin"
+    });
+});
 
 router.post('/users/add', async (req, res) => {
-    const { FullName, Email, Firstname, LastName } = req.body;
-
-    try {
-        const ret = await db('userinfo').insert({
-            FullName,
-            Email,
-            Firstname,
-            LastName
-        });
-        if (ret) {
-            res.redirect('/admin/users');
-        } else {
-            res.status(500).send('Error when adding user.');
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('An unexpected error occurred.');
+    const { Firstname, LastName, Email } = req.body;
+  
+    if (!Firstname || !LastName || !Email) {
+      req.flash('error', 'All fields are required');
+      return res.redirect('/admin/users/add');
     }
-});
+    const Fullname = Firstname + " " + LastName;
+  
+    try {
+      const newUser = {
+        Fullname, 
+        Firstname,
+        LastName,
+        Email
+      };
+  
+      const result = await adminService.addUser(newUser);
+  
+      if (result) {
+        req.flash('success', 'User added successfully');
+        res.redirect('/admin/users');
+      } else {
+        req.flash('error', 'Failed to add user');
+        res.redirect('/admin/users/add');
+      }
+    } catch (error) {
+      console.error('Error adding user:', error);
+      req.flash('error', 'An unexpected error occurred');
+      res.redirect('/admin/users/add');
+    }
+  });
+  
 
 router.post('/users/delete/:id', async (req, res) => {
     const { id } = req.params;
@@ -217,6 +234,29 @@ router.post('/users/delete/:id', async (req, res) => {
         res.status(500).send('An unexpected error occurred.');
     }
 });
+
+router.get('/users/edit/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const user = await adminService.getUserById(id);
+  
+      if (user) {
+        res.render('admin/edituser', {
+          user,
+          layout: 'nav-bar-admin', 
+        });
+      } else {
+        req.flash('error', 'User not found');
+        res.redirect('/admin/users');
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      req.flash('error', 'An unexpected error occurred');
+      res.redirect('/admin/users');
+    }
+  });
+
 
 router.post('/users/edit/:id', async (req, res) => {
     const { id } = req.params;
