@@ -1,5 +1,6 @@
 
 body {
+    width: 100%;
     background-color: #fff;
     color: #000;
     font-family: Arial, sans-serif;
@@ -344,6 +345,186 @@ body {
   object-fit: cover;  
   
 }
+
+nav {
+  width: 100%; 
+  display: flex; 
+  justify-content: center; 
+}
+
+.pagination {
+  display: flex;
+  margin-left: -540px; 
+}
+
+
+/* Comment box container */
+.comment-box {
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+}
+
+/* Avatar */
+.comment-box img {
+  object-fit: cover;
+}
+
+/* Chỉnh sửa văn bản cho từng bình luận */
+.comment-box .text1 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #56575b;
+}
+
+/* Tên người bình luận */
+.comment-box .text2 {
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 6px;
+  color: #56575b;
+}
+
+/* Thông tin thời gian */
+.comment-box .text3 {
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 4px;
+  color: #828386;
+}
+
+.comment-box .text3o {
+  color: #00a5f4;
+}
+
+/* Thích (Upvote) */
+.comment-box .thumbup {
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.comment-box .thumbupo {
+  color: #17a2b8;
+}
+
+/* Các đối tượng đã upvote */
+.comment-box .text4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #828386;
+}
+
+.comment-box .text4i {
+  color: #00a5f4;
+}
+
+/* Thêm hiệu ứng cho khi người dùng di chuột vào "Upvote?" */
+.comment-box .text3:hover {
+  cursor: pointer;
+  color: #0056b3;
+}
+
+.addtxt {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 13px;
+  width: 500px;
+  background-color: #e5e8ed;
+  font-weight: 500;
+}
+
+.form-control:focus {
+  color: #000;
+}
+
+.second {
+  width: 500px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+.text1, .text2, .text3, .text4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #56575b;
+}
+
+
+.recommend-section {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recommend-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #00aaff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  background: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.article-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.article-card .content {
+  padding: 15px;
+}
+
+.article-card h3 {
+  font-size: 18px;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.article-card p {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+}
+
+.article-card a {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #00aaff;
+  text-decoration: none;
+}
+
+.article-card a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
     .header__actions {
         flex-direction: column; 
