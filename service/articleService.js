@@ -10,7 +10,7 @@ export default {
         return db('articles').whereIn('id', articleIds);
     },
 
-    getArticleByID(id) {
+    async getArticleByID(id) {
         return db('articles').where('id', id).first();
     },
     async getArticle() {
@@ -20,7 +20,23 @@ export default {
         return db("articles").where("id", id).del();
     },
  
-    patch(id,category){
+    async patch(id,category){
         return db("articles").where("id", id).update(category);
+    },
+    async updateStatusToDraft(id) {
+        try {
+            const article = await db('articles').where('id', id).first();
+
+            if (!article) {
+                throw new Error('Article not found');
+            }
+
+            return db('articles')
+                .where('id', id)
+                .update({ status: 'draft' });
+        } catch (error) {
+            console.error('Error updating article status to draft:', error);
+            throw error;
+        }
     }
 }

@@ -10,15 +10,24 @@ import googlePassport from './authentication/google.js';
 import githubPassport from './authentication/github.js';
 import flash from 'connect-flash';
 import adminRoute from './routes/adminRoute.js';
-import writerRoute from './routes/writerRoute.js';
 import authLogin from './routes/authLoginRoute.js';
 import vnpay from './routes/payment/vnpay.js';
 import payment from './routes/payment/payment.js';
 import router from './routes/index.js';
+import editorRoute from './routes/editorRoute.js';
 
 const app = express();
 
-app.engine('hbs', engine({ extname: 'hbs' }));
+// Add the eq helper
+const hbsHelpers = {
+  eq: (a, b) => a === b
+};
+
+// Configure Handlebars engine with helpers
+app.engine('hbs', engine({
+  extname: 'hbs',
+  helpers: hbsHelpers
+}));
 app.set('view engine', 'hbs');
 app.set('views', './view');
 
@@ -61,7 +70,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', router);
 app.use('/auth', authLogin);
-app.use('/writer', writerRoute);
+app.use('/editor', editorRoute);
 app.use('/admin', adminRoute);
 app.use('/api/payment', vnpay);
 app.use('/payment', payment);
