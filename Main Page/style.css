@@ -406,14 +406,14 @@ body {
   margin-top: 20px;
 }
 
-/* Cấu trúc mỗi bài báo */
+
 .article {
-  width: 48%; /* Đảm bảo mỗi bài báo chiếm khoảng 50% chiều rộng */
+  width: 48%; 
 }
 
 .article img {
-  width: 100%; /* Hình ảnh chiếm toàn bộ chiều rộng của thẻ div */
-  height: auto; /* Giữ tỉ lệ của hình ảnh */
+  width: 100%; 
+  height: auto; 
 }
 
 .article h2 {
@@ -426,6 +426,104 @@ body {
   color: #333;
   margin-top: 10px;
 }
+.comment-container {
+  width: 65%;           
+  margin-left: 0;       
+}
+
+.comment-box {
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+}
+
+
+.comment-box img {
+  object-fit: cover;
+}
+
+
+.comment-box .text1 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #56575b;
+}
+
+.comment-box .text2 {
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 6px;
+  color: #56575b;
+}
+
+
+.comment-box .text3 {
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 4px;
+  color: #828386;
+}
+
+.comment-box .text3o {
+  color: #00a5f4;
+}
+
+
+.comment-box .thumbup {
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.comment-box .thumbupo {
+  color: #17a2b8;
+}
+
+
+.comment-box .text4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #828386;
+}
+
+.comment-box .text4i {
+  color: #00a5f4;
+}
+
+
+.comment-box .text3:hover {
+  cursor: pointer;
+  color: #0056b3;
+}
+
+.addtxt {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 13px;
+  width: 500px;
+  background-color: #e5e8ed;
+  font-weight: 500;
+}
+
+.form-control:focus {
+  color: #000;
+}
+
+.second {
+  width: 500px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+.text1, .text2, .text3, .text4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #56575b;
+}
+
 @media (max-width: 768px) {
     .header__actions {
         flex-direction: column; 
