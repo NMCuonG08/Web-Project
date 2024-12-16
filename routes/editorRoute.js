@@ -124,5 +124,18 @@ router.get('/accept/:id', async (req, res) => {
     }
 });
 
+router.post('/accept/:id', async (req, res) => {
+    const {id} = req.params;
+    const { tag_id, category_id, publish_date } = req.body;
+
+    try {
+        await editorService.addAcceptInfo(id, tag_id, category_id, publish_date);
+        await articleService.updateStatusToPublished(id);
+        res.redirect('/editor');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to accept the article.' });
+    }
+});
 
 export default router;

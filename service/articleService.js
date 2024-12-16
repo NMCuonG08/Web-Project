@@ -38,5 +38,21 @@ export default {
             console.error('Error updating article status to draft:', error);
             throw error;
         }
+    },
+    async updateStatusToPublished(id) {
+        try {
+            const article = await db('articles').where('id', id).first();
+
+            if (!article) {
+                throw new Error('Article not found');
+            }
+
+            return db('articles')
+                .where('id', id)
+                .update({ status: 'published' });
+        } catch (error) {
+            console.error('Error updating article status to published:', error);
+            throw error;
+        }
     }
 }
