@@ -15,6 +15,7 @@ import vnpay from './routes/payment/vnpay.js';
 import payment from './routes/payment/payment.js';
 import router from './routes/index.js';
 import editorRoute from './routes/editorRoute.js';
+import subRoute from './routes/subRoute.js';
 
 const app = express();
 
@@ -74,6 +75,7 @@ app.use('/editor', editorRoute);
 app.use('/admin', adminRoute);
 app.use('/api/payment', vnpay);
 app.use('/payment', payment);
+app.use('/subscriber', subRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello word");

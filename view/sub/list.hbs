@@ -1,0 +1,41 @@
+<h1>Articles: </h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Summary</th>
+      <th scope="col">Created/Updated Date</th>
+      <th scope="col">View</th>
+      <th scope="col">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if this.list.length}}
+      {{#each this.list}}
+        <tr>
+          <td>{{title}}</td>
+          <td>{{summary}}</td>
+          <td>
+            Created: {{created_at}}<br>
+            Updated: {{updated_at}}
+          </td>
+          <td>
+            <a href="/subscriber/view/{{id}}" class="btn btn-info" aria-label="View">
+              <i class='bx bx-show'></i> View
+            </a>
+          </td>
+          <td>
+            <a href="/subscriber/download/{{id}}" class="btn btn-primary" aria-label="Download">
+              <i class='bx bxs-download'></i> Download
+            </a>
+          </td>
+        </tr>
+      {{/each}}
+    {{else}}
+      <tr>
+        <td colspan="5" class="text-center">No articles available</td>
+      </tr>
+    {{/if}}
+  </tbody>
+</table>
