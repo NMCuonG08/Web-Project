@@ -88,5 +88,32 @@ export default {
             console.error('Error generating PDF:', error);
             throw error;
         }
+    },
+    async getOrderedArticles() {
+        return db('articles').orderBy('is_premium', 'desc'); // Orders by is_premium (1 first, 0 after)
+    },
+    async getArticlesBasedOnUserSubscription(userID) {
+        try {
+            // Check if user is premium
+            const user = await db('users').where('id', userID).first();
+            if (!user) {
+                throw new Error('User not found');
+            }
+
+            // Determine if the user is premium
+            const isPremiumUser = user.subscription_expiry && new Date(user.subscription_expiry) > new Date();
+
+            if (isPremiumUser) {
+                // Premium user: return all articles with premium ones on top
+                return db('articles').orderBy('is_premium', 'desc');
+            } else {
+                // Non-premium user: return only non-premium articles
+                return db('articles').where('is_premium', 0);
+            }
+        } catch (error) {
+            console.error('Error fetching articles based on user subscription:', error);
+            throw error;
+        }
     }
+
 }
