@@ -16,6 +16,7 @@ import payment from './routes/payment/payment.js';
 import router from './routes/index.js';
 import editorRoute from './routes/editorRoute.js';
 import subRoute from './routes/subRoute.js';
+import captchaRoute from './routes/captchaRoute.js'
 
 const app = express();
 
@@ -76,6 +77,7 @@ app.use('/admin', adminRoute);
 app.use('/api/payment', vnpay);
 app.use('/payment', payment);
 app.use('/subscriber', subRoute);
+app.use('/captcha', captchaRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello word");
