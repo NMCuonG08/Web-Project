@@ -1,12 +1,5 @@
 ### Link to https://news-p-8f59a2e765d6.herokuapp.com/ or http://doproject.click
 
-### List Of Members
-
-|Name|MSSV|
-|---|---|
-|Nguyễn Mạnh Cường|22110015|
-|Lê Trường Thịnh|22110071|
-|Lê Công Bảo|22110009|
 
 # Mô tả website 
 
